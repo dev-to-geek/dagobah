@@ -1,0 +1,417 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+.btn-cloud-primary {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-medium text-lg flex p-5 justify-center items-center gap-3 rounded-md duration-300 cursor-pointer
+}
+
+.option-cloud {
+    @apply p-4 border rounded-xl hover:bg-gray-100/30 hover:border-gray-100/30 fill-gray-300 text-gray-300 stroke-gray-300 hover:text-blue-700 hover:fill-blue-700 hover:stroke-blue-700 duration-300 cursor-pointer;
+}
+
+.option-cloud-flavor{
+    @apply text-left p-4 border rounded-xl hover:bg-gray-100/30 enabled:hover:border-gray-100/30 text-slate-500 enabled:hover:text-blue-500 enabled:hover:fill-blue-700 hover:stroke-blue-700 duration-300 cursor-pointer;
+}
+
+.option-cloud-disabled {
+    @apply p-4 border rounded-xl bg-gray-200/30 border-gray-100/30 fill-gray-400 text-gray-500 cursor-not-allowed;
+}
+
+.option-cloud-selected {
+    @apply bg-orange-100 border-orange-600 text-orange-600 stroke-orange-600 fill-orange-600 hover:stroke-orange-600 hover:fill-orange-600 hover:bg-orange-100 hover:border-orange-600 hover:text-orange-600 hover:cursor-pointer;
+    input, select {
+        @apply border-orange-600 text-orange-600;
+    }
+}
+
+
+.input-checkbox-orange {
+    @apply w-4 h-4 text-orange-600 border-gray-300 form-checkbox cursor-pointer focus:ring-orange-500;
+}
+
+.input-radio-orange {
+    @apply w-4 h-4 text-orange-600 border-gray-300 form-radio cursor-pointer focus:ring-orange-500;
+}
+
+.form-angle {
+    @apply border border-slate-300 text-base py-4 px-4 focus:border focus:border-slate-500 focus:ring-slate-500;
+}
+
+.form-rounded-md {
+    @apply rounded-md border-gray-300 py-3 px-4 shadow-sm focus:border-blue-500 focus:ring-blue-500;
+}
+
+input[type='number'].appearance-none::-webkit-outer-spin-button,
+input[type='number'].appearance-none::-webkit-inner-spin-button,
+input[type='number'].appearance-none {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+    text-align: right;
+}
+
+.server-details {
+
+    strong {
+        @apply font-bold;
+    }
+
+    h2 {
+        @apply text-slate-500 text-3xl mb-4;
+    }
+
+    h3 {
+        @apply text-slate-500 text-xl mb-4;
+    }
+
+    strong {
+        @apply font-medium;
+    }
+
+    .caption {
+        @apply text-slate-500 font-light;
+
+        p {
+            @apply mt-1 mb-4;
+        }
+
+        p.mb-0 {
+            margin-bottom: 0 !important;
+        }
+
+        ul {
+            @apply ml-6 mb-4;
+            li {
+                @apply px-2;
+            }
+        }
+
+        code {
+            @apply bg-slate-100 text-black font-mono py-1 px-2 rounded;
+        }
+    }
+
+    .tmp-password {
+        code {
+            @apply bg-gray-700 text-amber-300 font-mono py-1 px-2 rounded;
+        }
+    }
+
+    .section {
+        .btn-primary, .btn-danger {
+            @apply mt-12;
+        }
+    }
+
+    hr.hr-my-12 {
+        @apply my-12 h-px bg-slate-200 border-0;
+    }
+}
+
+.btn-outline-danger {
+    @apply text-red-400 text-base;
+}
+
+.btn-outline-warning {
+    @apply text-yellow-500 text-base;
+}
+
+.btn-outline-info {
+    @apply text-blue-500 text-base;
+}
+
+.btn-primary {
+    @apply inline-flex flex-row space-x-4 items-center  bg-[#2563EB]
+    hover:bg-[#1D4ED8]
+    disabled:text-gray-300 disabled:bg-blue-800 disabled:cursor-not-allowed
+    px-10 py-4 text-lg text-white font-normal rounded-md
+    duration-300 cursor-pointer;
+}
+
+.btn-danger {
+    @apply inline-flex flex-row space-x-4 items-center  bg-red-600 hover:bg-red-800 px-10 py-4 text-lg text-white font-medium rounded-md duration-300 cursor-pointer;
+}
+
+.list-component {
+    .empty-list {
+        @apply mt-0 grid grid-cols-1 md:grid-cols-2 gap-20;
+        div.empty-hint {
+            @apply col-span-1 flex flex-col;
+            h2 {
+                @apply text-4xl font-bold text-slate-500 tracking-wide mb-8;
+            }
+
+            div.caption {
+                @apply text-3xl font-light text-slate-500 tracking-normal mb-16;
+            }
+        }
+
+        div.empty-image {
+            @apply hidden md:block col-span-1;
+        }
+    }
+}
+
+// GENERIC
+h2 {
+    @apply text-slate-500 text-3xl mb-4;
+}
+
+h3 {
+    @apply text-slate-500 text-xl mb-4;
+}
+
+.caption {
+    @apply text-slate-500 font-light;
+
+    p {
+        @apply mt-1 mb-4;
+    }
+
+    p.mb-0 {
+        margin-bottom: 0 !important;
+    }
+
+    ul {
+        @apply ml-6 mb-4;
+        li {
+            @apply px-2;
+        }
+    }
+
+    code {
+        @apply bg-slate-100 text-black font-mono py-1 px-2 rounded;
+    }
+
+    ul {
+        @apply space-y-1 list-disc list-inside mb-4;
+
+        li {
+
+        }
+    }
+
+    ul > li {
+        @apply ml-4;
+    }
+    ol > li {
+        @apply ml-4;
+    }
+
+    ol {
+        @apply space-y-1 list-decimal list-inside mb-4;
+    }
+
+}
+
+table.list {
+    @apply w-full text-sm text-left text-gray-500 table-fixed;
+    thead {
+        @apply text-sm text-gray-700 uppercase tracking-wide;
+
+        tr {
+            @apply border-b;
+
+            th {
+                @apply py-3 px-0;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            @apply border-b;
+
+            th {
+                @apply py-4 px-0;
+
+                div.id {
+                    @apply font-medium text-blue-700 whitespace-nowrap flex space-x-3 content-center items-center;
+                }
+            }
+
+            td {
+                @apply py-4 px-4;
+            }
+
+            td.tools {
+                @apply py-4 px-0 flex flex-col space-y-4 items-end content-center;
+            }
+        }
+    }
+
+
+
+    input.firewall {
+        @apply text-gray-900 py-4 px-2 max-w-sm border border-slate-300 bg-white text-left shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-base;
+    }}
+
+.ip-input-container {
+    @apply border border-slate-300 bg-white shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-base py-1;
+    display: inline-block;
+    //height: 28px;
+    line-height: normal;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.ip-segment {
+    display: inline-block;
+    width: 39px;
+    //height: 26px;
+    line-height: normal;
+
+    input {
+        @apply py-4 px-0 m-0 my-0 text-gray-900;
+        width: 30px;
+        //height: 26px;
+        line-height: normal;
+        border: none;
+        outline: none;
+        text-align: center;
+        text-indent: 0px;
+        background-color: transparent;
+    }
+
+    i {
+        display: inline-block;
+        font-size: 18px;
+    }
+}
+
+.ns-modal {
+    h1.title {
+        @apply text-slate-500;
+    }
+    .btn-outline-secondary {
+        @apply inline-flex flex-row space-x-4 items-center
+        bg-[#2563EB] enabled:hover:bg-[#1D4ED8] px-10 py-4
+        disabled:text-white disabled:bg-slate-300 disabled:cursor-not-allowed
+        text-lg text-white font-normal rounded-md duration-300 cursor-pointer;
+    }
+
+    .btn-primary {
+        @apply inline-flex flex-row space-x-4 items-center
+        bg-[#2563EB] enabled:hover:bg-[#1D4ED8] px-10 py-4
+        disabled:text-white disabled:bg-slate-300 disabled:cursor-not-allowed
+        text-lg text-white font-normal rounded-md duration-300 cursor-pointer;
+    }
+    .btn-danger {
+        @apply inline-flex flex-row space-x-4 items-center
+        bg-red-500 enabled:hover:bg-red-800 px-10 py-4
+        disabled:text-white disabled:bg-slate-300 disabled:cursor-not-allowed
+        text-lg text-white font-medium rounded-md duration-300 cursor-pointer;
+    }
+    code {
+        @apply bg-slate-100 text-black font-mono py-1 px-2 rounded;
+    }
+    input:not(.input-inner-label) {
+        @apply my-4 text-gray-900 py-4 px-2 max-w-sm border border-slate-300 bg-white text-left shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-base;
+    }
+}
+
+div.input-inner-label {
+    @apply border border-slate-200 px-2 py-1 flex flex-col w-1/2;
+
+    label {
+        @apply text-slate-400 text-sm font-medium mx-2;
+    }
+
+    input.input-inner-label {
+        @apply outline-none mt-1 mb-1 px-2 focus:border-b-2 focus:border-blue-400 text-slate-600 text-lg;
+    }
+}
+
+#project-dashboard {
+    h1 {
+        @apply  text-3xl font-medium text-slate-500;
+    }
+    p {
+        @apply mt-2 text-lg text-gray-700 mt-4;
+    }
+}
+
+div.dashboard-table {
+    @apply -mx-4 mt-8 flex flex-col sm:-mx-6 md:mx-0;
+
+    table {
+        @apply min-w-full divide-y divide-gray-300;
+        thead {
+            tr {
+                th {
+                    @apply py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 md:pl-0;
+                }
+            }
+        }
+        tbody {
+            tr {
+                @apply border-b border-gray-200;
+                td {
+                    @apply py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0;
+                }
+            }
+        }
+        tfoot {
+            tr {
+                td {
+                    @apply py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0;
+                }
+            }
+        }
+    }
+}
+
+.row-loading{
+    td, th{
+        @apply bg-slate-100
+    }
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 0.3em;
+    max-height: 250px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+.option-cloud-support{
+    ul {
+        @apply space-y-1 list-disc list-inside mb-4;
+
+        li {
+
+        }
+    }
+
+    ul > li {
+        @apply ml-4;
+    }
+    ol > li {
+        @apply ml-4;
+    }
+
+    ol {
+        @apply space-y-1 list-decimal list-inside mb-4;
+    }
+}
