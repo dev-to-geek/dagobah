@@ -47,12 +47,14 @@
                     class="break-keep whitespace-nowrap">
                     <input id="minPort" class="firewall appearance-none w-1/4" type="number"
                            data-uuid="1c1fe86e-a5e6-41ed-8258-957c0d17ceda"
-                           v-on:focusout="checkPort($event)"
+                           v-on:input="isPropValidDelayed"
+                           v-on:focusout="isPropValid"
                            v-model="minPort">
                     -
                     <input id="maxPort" class="firewall appearance-none w-1/4" type="number"
                            data-uuid="260672ce-75c6-42d4-bd1b-aa627c74a0cb"
-                           v-on:focusout="checkPort($event)"
+                           v-on:input="isPropValidDelayed"
+                           v-on:focusout="isPropValid"
                            v-model="maxPort">
                 </td>
                 <td v-else>---</td>
@@ -60,7 +62,7 @@
                     <IpInputComponent :ip="selectedIp" :on-change="changeIp" :on-blur="changeIp"/>
                     /
                     <input id="mask" class="firewall appearance-none w-1/6" type="number" min="0" max="255"
-                           v-on:focusout="inputMask($event)" v-model="mask">
+                           v-on:input="isPropValidDelayed" v-on:focusout="isPropValid" v-model="mask">
                 </td>
                 <td class="tools">
                     <Button :is_loading="isSaving" @click="saveRule()" class="btn btn-outline-info"
@@ -120,6 +122,12 @@ export default {
             }
         }
 
+        const checking = {
+            'minPort' : false,
+            'maxPort': false,
+            'mask': false
+        }
+
         return {
             rules,
             addRules,
@@ -129,7 +137,8 @@ export default {
             minPort,
             maxPort,
             mask,
-            config
+            config,
+            checking
         }
     },
     methods: {
@@ -170,26 +179,33 @@ export default {
 
             event.target.value = defaultVal
         },
-        checkPort(event) {
+        isPropValidDelayed(event) {
+            if (this.checking[event.target.id]) return
+            this.checking[event.target.id] = true
+            setTimeout(() => {
+                console.log('checking')
+                this.isPropValid(event)
+                this.checking[event.target.id] = false
+            }, 1e3)
+        },
+        isPropValid(event) {
             if (event.target.id === 'minPort') {
                 if (!('' + this.minPort).length || isNaN(this.minInputNum) || this.minInputNum <= 0) this.inputDefault('min', event)
                 else if (this.minInputNum > this.maxInputNum) {
                     event.target.value = this.maxPort;
                     this.minPort = this.maxPort;
                 }
-            } else {
+            } else if (event.target.id === 'maxPort') {
                 if (!('' + this.maxPort).length || isNaN(this.maxInputNum) || this.maxInputNum <= 0) this.inputDefault('max', event)
                 else if (this.maxInputNum > this.config.port.max) {
                     event.target.value = this.minPort;
                     this.maxPort = this.minPort;
                 }
+            } else if (event.target.id === 'mask') {
+                if (isNaN(this.maskNum) || event.target.value === '' || this.maskNum < 0) this.mask = this.config.mask.min
+                else if (this.maskNum > 32) this.mask = this.config.mask.max
             }
             if (this.maxInputNum < this.minInputNum) this.minPort = this.maxPort
-        },
-        inputMask(event) {
-            console.log(event.target.value)
-            if (isNaN(this.maskNum) || event.target.value === '' || this.maskNum < 0) this.mask = this.config.mask.min
-            else if (this.maskNum > 32) this.mask = this.config.mask.max
         }
     },
     computed: {
