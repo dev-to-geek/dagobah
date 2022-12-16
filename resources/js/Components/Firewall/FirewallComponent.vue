@@ -22,7 +22,7 @@
                     {{ rule.protocol ?? 'ANY' }}
                 </td>
                 <td>
-                    <div v-if="rule.protocol?.toUpperCase() !== 'ICMP'" class="break-keep whitespace-nowrap">
+                    <div v-if="rule.protocol?.toUpperCase() !== 'ICMP'" class="break-keep flex whitespace-nowrap">
                         {{ rule.portRage.min ?? 1 }}-{{ rule.portRage.max ?? 65535 }}
                     </div>
                     <div v-else class="break-keep whitespace-nowrap">
@@ -44,24 +44,24 @@
                     <SelectProtocolComponent v-model="selectedProtocol"/>
                 </td>
                 <td v-if="(selectedProtocol?.value.toUpperCase() ?? '') !== 'ICMP'"
-                    class="break-keep whitespace-nowrap">
-                    <input id="minPort" class="firewall appearance-none w-1/4" type="number"
+                    class="break-keep whitespace-nowrap space-x-2">
+                    <input id="minPort" class="firewall appearance-none w-1/4 min-w-[80px]" type="number"
                            data-uuid="1c1fe86e-a5e6-41ed-8258-957c0d17ceda"
                            v-on:input="isPropValidDelayed"
                            v-on:focusout="isPropValid"
                            v-model="minPort">
-                    -
-                    <input id="maxPort" class="firewall appearance-none w-1/4" type="number"
+                    <span>-</span>
+                    <input id="maxPort" class="firewall appearance-none w-1/4 min-w-[80px]" type="number"
                            data-uuid="260672ce-75c6-42d4-bd1b-aa627c74a0cb"
                            v-on:input="isPropValidDelayed"
                            v-on:focusout="isPropValid"
                            v-model="maxPort">
                 </td>
                 <td v-else>---</td>
-                <td class="break-keep whitespace-nowrap">
+                <td class="break-keep space-x-2 whitespace-nowrap">
                     <IpInputComponent :ip="selectedIp" :on-change="changeIp" :on-blur="changeIp"/>
-                    /
-                    <input id="mask" class="firewall appearance-none w-1/6" type="number" min="0" max="255"
+                    <span>/</span>
+                    <input id="mask" class="firewall appearance-none w-1/6 min-w-[50px]" type="number" min="0" max="255"
                            v-on:input="isPropValidDelayed" v-on:focusout="isPropValid" v-model="mask">
                 </td>
                 <td class="tools">
@@ -142,16 +142,9 @@ export default {
         }
     },
     methods: {
-        addRule() {
+        addRule(rule) {
             this.isSaving = false;
-            this.addRules.push({
-                portRange: {
-                    min: '',
-                    max: ''
-                },
-                remoteIpPrefix: '',
-                protocol: '',
-            });
+            this.addRules.push(rule);
         },
         saveRule() {
             this.isSaving = true
@@ -167,6 +160,8 @@ export default {
                 remoteIpPrefix: `${ this.selectedIp }/${ this.mask }`,
                 protocol: this.selectedProtocol?.value ?? 'tcp'
             }
+
+            this.addRules(rule)
         },
         changeIp(changingIp) {
             this.selectedIp = changingIp

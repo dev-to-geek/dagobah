@@ -246,17 +246,22 @@ table.list {
 
 
     input.firewall {
-        @apply text-gray-900 py-4 px-2 max-w-sm border border-slate-300 bg-white text-left shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-base;
-    }}
+        @apply text-gray-900 h-[60px] bg-white px-2 text-left max-w-sm border border-slate-300 shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-base;
+    }
+}
 
 .ip-input-container {
-    @apply border border-slate-300 bg-white shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-base py-1;
+    @apply text-gray-900 h-[60px] bg-white px-2 max-w-sm border shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500 sm:text-base;
     display: inline-block;
     //height: 28px;
     line-height: normal;
     border: 1px solid #ccc;
     box-sizing: border-box;
     background-color: #fff;
+}
+
+.ipInputFocused {
+    @apply border-slate-500 outline-none ring-1 ring-slate-500
 }
 
 .ip-segment {
