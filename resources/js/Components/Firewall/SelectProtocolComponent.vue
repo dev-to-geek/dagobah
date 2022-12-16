@@ -10,7 +10,7 @@
             </ListboxButton>
 
             <transition leave-active-class="transition ease-in duration-100" leave-from-class="opacity-100" leave-to-class="opacity-0">
-                <ListboxOptions class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-base">
+                <ListboxOptions class="absolute z-10 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-base">
                     <ListboxOption as="template" v-for="protocol in protocols" :key="protocol.id" :value="protocol" v-slot="{ active, selected }">
                         <li :class="[active ? 'text-white bg-slate-500' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-3 pr-9']">
                             <span :class="[selected ? 'font-semibold' : 'font-normal', 'block truncate']">{{ protocol.name }}</span>
