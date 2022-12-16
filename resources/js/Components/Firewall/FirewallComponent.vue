@@ -39,7 +39,7 @@
                     </Button>
                 </td>
             </tr>
-            <tr>
+            <tr class="h-[100px]">
                 <td>
                     <SelectProtocolComponent v-model="selectedProtocol"/>
                 </td>
@@ -69,6 +69,17 @@
                             data-uuid="9fa4d9ea-45d2-42a2-b6b1-01998a52346c">
                         Save
                     </Button>
+                </td>
+            </tr>
+            <tr class="h-[100px] text-[1rem]" v-for="rule in addRules">
+                <td class="font-bold">
+                    {{ rule.protocol.toUpperCase() }}
+                </td>
+                <td>
+                    {{ rule.portRange.min }} - {{ rule.portRange.max }}
+                </td>
+                <td>
+                    {{ rule.remoteIpPrefix }}
                 </td>
             </tr>
             </tbody>
@@ -107,6 +118,14 @@ export default {
         let selectedIp = '0.0.0.0';
         let mask = 0;
 
+        let cached = {
+            port: {
+                min: 1,
+                max: 65535
+            },
+            mask: 0
+        }
+
         const config = {
             port: {
                 min: 1,
@@ -138,21 +157,25 @@ export default {
             maxPort,
             mask,
             config,
-            checking
+            checking,
+            cached
         }
     },
     methods: {
         addRule(rule) {
             this.isSaving = false;
+            if (this.alreadyExists(rule)) return
+            console.log('saved!')
             this.addRules.push(rule);
         },
         saveRule() {
+            console.log('saving...')
             this.isSaving = true
 
             const isICMP = (this.selectedProtocol?.value ?? 'tcp').toUpperCase() === 'ICMP'
             const portRange = {
-                min: isICMP ? config.icmp.min : this.minPort,
-                max: isICMP ? config.icmp.max : this.maxPort
+                min: isICMP ? this.config.icmp.min : this.minPort,
+                max: isICMP ? this.config.icmp.max : this.maxPort
             }
 
             const rule = {
@@ -161,18 +184,15 @@ export default {
                 protocol: this.selectedProtocol?.value ?? 'tcp'
             }
 
-            this.addRules(rule)
+            this.addRule(rule)
         },
         changeIp(changingIp) {
             this.selectedIp = changingIp
         },
         inputDefault(which, event) {
-            const defaultVal = which === 'min' ? this.config.port.min : this.config.port.max
-
-            if (which === 'min') this.minPort = defaultVal
-            else this.maxPort = defaultVal
-
-            event.target.value = defaultVal
+            if (which === 'min') this.minPort = this.cached.port.min
+            else this.maxPort = this.cached.port.max
+            event.target.value = which === 'min' ? this.cached.port.min : this.cached.port.max
         },
         isPropValidDelayed(event) {
             if (this.checking[event.target.id]) return
@@ -185,22 +205,29 @@ export default {
         },
         isPropValid(event) {
             if (event.target.id === 'minPort') {
-                if (!('' + this.minPort).length || isNaN(this.minInputNum) || this.minInputNum <= 0) this.inputDefault('min', event)
+                if (!('' + this.minPort).length || !Number.isInteger(this.minInputNum) || this.minInputNum <= 0) this.inputDefault('min', event)
                 else if (this.minInputNum > this.maxInputNum) {
-                    event.target.value = this.maxPort;
-                    this.minPort = this.maxPort;
+                    event.target.value = this.maxPort
+                    this.minPort = this.cached.port.min
                 }
+                else this.cached.port.min = this.minPort
             } else if (event.target.id === 'maxPort') {
-                if (!('' + this.maxPort).length || isNaN(this.maxInputNum) || this.maxInputNum <= 0) this.inputDefault('max', event)
+                if (!('' + this.maxPort).length || !Number.isInteger(this.maxInputNum) || this.maxInputNum <= 0) this.inputDefault('max', event)
                 else if (this.maxInputNum > this.config.port.max) {
-                    event.target.value = this.minPort;
-                    this.maxPort = this.minPort;
+                    event.target.value = this.minPort
+                    this.maxPort = this.cached.port.max
                 }
+                else this.cached.port.max = this.maxPort
             } else if (event.target.id === 'mask') {
-                if (isNaN(this.maskNum) || event.target.value === '' || this.maskNum < 0) this.mask = this.config.mask.min
-                else if (this.maskNum > 32) this.mask = this.config.mask.max
+                if (!Number.isInteger(this.maskNum) || event.target.value === '' || this.maskNum < 0) this.mask = this.config.mask.min
+                else if (this.maskNum > 32) this.mask = this.cached.mask
+                else this.cached.mask = this.mask
             }
-            if (this.maxInputNum < this.minInputNum) this.minPort = this.maxPort
+            if (this.maxInputNum < this.minInputNum) this.minPort = this.cached.port.min
+        },
+        alreadyExists(addingRule) {
+            return this.addRules.some(rule => rule.portRange.min === addingRule.portRange.min && rule.portRange.max === addingRule.portRange.max &&
+                                              rule.remoteIpPrefix === addingRule.remoteIpPrefix && rule.protocol === addingRule.protocol)
         }
     },
     computed: {
