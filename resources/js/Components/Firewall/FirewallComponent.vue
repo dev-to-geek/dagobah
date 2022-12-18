@@ -81,6 +81,12 @@
                 <td>
                     {{ rule.remoteIpPrefix }}
                 </td>
+                <td class="tools">
+                    <Button @click="deleteRule(rule.id)" class="btn btn-outline-danger"
+                            data-uuid="">
+                        Delete
+                    </Button>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -179,12 +185,26 @@ export default {
             }
 
             const rule = {
+                id: this.addRules.length,
                 portRange: portRange,
                 remoteIpPrefix: `${ this.selectedIp }/${ this.mask }`,
                 protocol: this.selectedProtocol?.value ?? 'tcp'
             }
 
             this.addRule(rule)
+        },
+        deleteRule(ruleid) {
+            console.log('deleting...')
+            const ruleIdx = this.addRules.findIndex(rule => rule.id === ruleid)
+            if (ruleIdx == null) return
+            delete this.addRules[ruleIdx]
+            this.refactorIds()
+            console.log('deleted!')
+        },
+        refactorIds() {
+            for (let rule in this.addRules) {
+                this.addRules[rule].id = rule
+            }
         },
         changeIp(changingIp) {
             this.selectedIp = changingIp
