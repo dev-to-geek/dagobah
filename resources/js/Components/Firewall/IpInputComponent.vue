@@ -1,7 +1,7 @@
 <template>
-    <div class="ip-input-container">
+    <div id="ipInputContainer" @focusin="onFocusIn" @focusout="onFocusOut" class="ip-input-container" tabindex="0">
         <div class="ip-segment" v-for="(segment, index) in segments">
-            <input type="text" maxlength="3" class="ip-segment-input" :value="segment"
+            <input type="text" maxlength="3" @click="makeFocus" class="ip-segment-input" :value="segment"
                    :placeholder="placeholder"
                    data-uuid="c712c2ed-a55e-4aeb-8c16-b378d7ea93f8"
                    v-on:keydown="onInputKeydown($event, index)"
@@ -150,6 +150,12 @@ export default {
                     return segment;
                 });
             }
+        },
+        onFocusIn() {
+            document.getElementById('ipInputContainer').classList.add('ipInputFocused')
+        },
+        onFocusOut() {
+            document.getElementById('ipInputContainer').classList.remove('ipInputFocused')
         }
     },
     mounted() {
