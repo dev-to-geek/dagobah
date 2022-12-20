@@ -11,8 +11,26 @@ module.exports = {
 
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Poppins'],
+            fontFamily:{
+                sans: ['Poppins']
+            },
+            backgroundSize: {
+                'auto': 'auto',
+                'cover': 'cover',
+                'contain': 'contain',
+                '50%': '50%',
+                '16': '4rem',
+            },
+            backgroundPosition: {
+                'right-center': 'right center'
+            },
+            backgroundImage: {
+                'quota-instance': "url('/resources/images/quotas/istanza.svg')",
+                'quota-ram': "url('/resources/images/quotas/ram.svg')",
+                'quota-volume': "url('/resources/images/quotas/volume.svg')",
+                'quota-cpu': "url('/resources/images/quotas/cpu.svg')",
+                'quota-floatingIp': "url('/resources/images/quotas/floatingIp.svg')",
+                'quota-backup': "url('/resources/images/quotas/backup.svg')",
             },
             colors: {
                 netsons: {

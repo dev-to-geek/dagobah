@@ -1,0 +1,52 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="100" height="100" fill="#1C3E75"/>
+<mask id="mask0_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+<rect width="100" height="100" fill="#0D1C36"/>
+</mask>
+<g mask="url(#mask0_507_2606)">
+<mask id="mask1_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="50">
+<mask id="mask2_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+<circle cx="50" cy="50" r="50" transform="rotate(-180 50 50)" fill="#60A5FA"/>
+</mask>
+<g mask="url(#mask2_507_2606)">
+<rect x="108.108" y="50" width="129.73" height="63.5135" transform="rotate(-180 108.108 50)" fill="#60A5FA"/>
+</g>
+</mask>
+<g mask="url(#mask1_507_2606)">
+<rect x="48.6487" width="51.3514" height="100" fill="#3B82F6"/>
+</g>
+<mask id="mask3_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="50">
+<mask id="mask4_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+<circle cx="50" cy="50" r="50" transform="rotate(-180 50 50)" fill="#3B82F6"/>
+</mask>
+<g mask="url(#mask4_507_2606)">
+<rect x="108.108" y="50" width="129.73" height="63.5135" transform="rotate(-180 108.108 50)" fill="#3B82F6"/>
+</g>
+</mask>
+<g mask="url(#mask3_507_2606)">
+<rect width="50" height="100" fill="#60A5FA"/>
+</g>
+<mask id="mask5_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="50" width="100" height="50">
+<mask id="mask6_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="50" width="100" height="100">
+<circle cx="50" cy="100" r="50" transform="rotate(-180 50 100)" fill="#60A5FA"/>
+</mask>
+<g mask="url(#mask6_507_2606)">
+<rect x="108.108" y="100" width="129.73" height="63.5135" transform="rotate(-180 108.108 100)" fill="#60A5FA"/>
+</g>
+</mask>
+<g mask="url(#mask5_507_2606)">
+<rect x="48.6487" y="50" width="51.3514" height="100" fill="#3B82F6"/>
+</g>
+<mask id="mask7_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="50" width="100" height="50">
+<mask id="mask8_507_2606" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="50" width="100" height="100">
+<circle cx="50" cy="100" r="50" transform="rotate(-180 50 100)" fill="#3B82F6"/>
+</mask>
+<g mask="url(#mask8_507_2606)">
+<rect x="108.108" y="100" width="129.73" height="63.5135" transform="rotate(-180 108.108 100)" fill="#3B82F6"/>
+</g>
+</mask>
+<g mask="url(#mask7_507_2606)">
+<rect y="50" width="50" height="100" fill="#60A5FA"/>
+</g>
+</g>
+</svg>
